@@ -73,4 +73,4 @@ You can pass an array of configuration options to `ReplaceInFileWebpackPlugin`. 
 
 # License
 
-This project is licensed under [MIT]().
+This project is licensed under [MIT](https://github.com/oyslin/replace-in-file-webpack-plugin/blob/master/LICENSE).

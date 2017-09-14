@@ -1,0 +1,28 @@
+{
+  "name": "replace-in-file-webpack-plugin",
+  "version": "1.0.0",
+  "description": "A webpack plugin to replace strings in file(s) after building",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/oyslin/replace-in-file-webpack-plugin.git"
+  },
+  "keywords": [
+    "webpack",
+    "plugin",
+    "replace",
+    "file"
+  ],
+  "author": {
+    "name": "Walt Ouyang",
+    "email": "oyslin@163.com"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/oyslin/replace-in-file-webpack-plugin/issues"
+  },
+  "homepage": "https://github.com/oyslin/replace-in-file-webpack-plugin#readme"
+}

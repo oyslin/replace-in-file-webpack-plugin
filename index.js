@@ -19,7 +19,7 @@ function getAllFiles(root) {
 	return res
 }
 
-function replace(file, rules){
+function replace(file, rules) {
 	const src = path.resolve(file);
 	let template = fs.readFileSync(src, 'utf8');
 
@@ -40,12 +40,15 @@ function ReplaceInFilePlugin(options = []) {
 ReplaceInFilePlugin.prototype.apply = function (compiler) {
 	const root = compiler.options.context;
 	const done = (statsData) => {
+		if (statsData.hasErrors()) {
+			return
+		}
 		this.options.forEach(option => {
 			const dir = option.dir ? option.dir : root;
 			const files = option.files;
 
 			if (files && Array.isArray(files) && files.length) {
-				files.forEach(file=>{
+				files.forEach(file => {
 					replace(path.resolve(dir, file), option.rules);
 				})
 			} else {
@@ -63,15 +66,17 @@ ReplaceInFilePlugin.prototype.apply = function (compiler) {
 					}
 
 					replace(file, option.rules);
-					
+
 				})
 			}
 		})
 	}
 
 	if (compiler.hooks) {
-		const plugin = {name: "ReplaceInFilePlugin", stage: Number.MAX_VALUE};
-		compiler.hooks.afterEmit.tapAsync(plugin, done);
+		const plugin = {
+			name: "ReplaceInFilePlugin"
+		};
+		compiler.hooks.done.tapAsync(plugin, done);
 	} else {
 		compiler.plugin('done', done);
 	}

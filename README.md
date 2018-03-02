@@ -22,7 +22,7 @@ Add the plugin to your webpack and config as follows:
             filename: 'index_bundle.js'
         },
         plugins: [
-            new FileReplacePlugin([{
+            new ReplaceInFileWebpackPlugin([{
                 dir: 'dist',
                 files: ['index.html', 'main.html'],
                 rules: [{

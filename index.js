@@ -70,7 +70,7 @@ ReplaceInFilePlugin.prototype.apply = function (compiler) {
 	}
 
 	if (compiler.hooks) {
-		const plugin = {name: "ReplaceInFilePlugin"};
+		const plugin = {name: "ReplaceInFilePlugin", stage: Number.MAX_VALUE};
 		compiler.hooks.done.tapAsync(plugin, done);
 	} else {
 		compiler.plugin('done', done);

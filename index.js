@@ -39,8 +39,7 @@ function ReplaceInFilePlugin(options = []) {
 
 ReplaceInFilePlugin.prototype.apply = function (compiler) {
 	const root = compiler.options.context;
-
-	compiler.plugin('done', (statsData) => {
+	const done = (statsData) => {
 		this.options.forEach(option => {
 			const dir = option.dir ? option.dir : root;
 			const files = option.files;
@@ -68,7 +67,14 @@ ReplaceInFilePlugin.prototype.apply = function (compiler) {
 				})
 			}
 		})
-	});
+	}
+
+	if (compiler.hooks) {
+		const plugin = {name: "ReplaceInFilePlugin"};
+		compiler.hooks.done.tapAsync(plugin, done);
+	} else {
+		compiler.plugin('done', done);
+	}
 };
 
 module.exports = ReplaceInFilePlugin;

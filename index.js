@@ -44,14 +44,17 @@ ReplaceInFilePlugin.prototype.apply = function (compiler) {
 			return
 		}
 		this.options.forEach(option => {
-			const dir = option.dir ? option.dir : root;
+			const dir = option.dir || root;
 			const files = option.files;
 
-			if (files && Array.isArray(files) && files.length) {
-				files.forEach(file => {
-					replace(path.resolve(dir, file), option.rules);
-				})
-			} else {
+			if(option.files){
+				const files = option.files;
+				if(Array.isArray(files) && files.length) {
+					files.forEach(file => {
+						replace(path.resolve(dir, file), option.rules);
+					})
+				}
+			} else if (option.test) {
 				const test = option.test;
 				const testArray = Array.isArray(test) ? test : [test];
 				const files = getAllFiles(dir);
@@ -66,7 +69,11 @@ ReplaceInFilePlugin.prototype.apply = function (compiler) {
 					}
 
 					replace(file, option.rules);
-
+				})
+			} else {
+				const files = getAllFiles(dir);
+				files.forEach(file => {
+					replace(file, option.rules);
 				})
 			}
 		})

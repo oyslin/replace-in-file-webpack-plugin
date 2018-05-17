@@ -1,6 +1,6 @@
 {
   "name": "replace-in-file-webpack-plugin",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "A webpack plugin to replace strings in file(s) after building",
   "main": "index.js",
   "scripts": {

@@ -21,16 +21,21 @@ function getAllFiles(root) {
 
 function replace(file, rules) {
 	const src = path.resolve(file);
-	let template = fs.readFileSync(src, 'utf8');
+	
+	try {
+		let template = fs.readFileSync(src, 'utf8');
 
-	template = rules.reduce(
-		(template, rule) => template.replace(
-			rule.search, (typeof rule.replace === 'string' ? rule.replace : rule.replace.bind(global))
-		),
-		template
-	);
+		template = rules.reduce(
+			(template, rule) => template.replace(
+				rule.search, (typeof rule.replace === 'string' ? rule.replace : rule.replace.bind(global))
+			),
+			template
+		);
 
-	fs.writeFileSync(src, template);
+		fs.writeFileSync(src, template);
+	} catch (err) {
+		return
+	}
 }
 
 function ReplaceInFilePlugin(options = []) {

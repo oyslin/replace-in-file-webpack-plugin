@@ -68,8 +68,8 @@ You can pass an array of configuration options to `ReplaceInFileWebpackPlugin`. 
 - `files`: Optional. Files in `dir` to find for replacement.
 - `test`: Optional. Regex expression or Regex expressions array to match files in `dir`.
 - `rules`: Required. Replace content rules array. Each rule has `search` and `replace` properties.
-- `search`: Required. String or Regex expression used for searching content in files.
-- `replace`: Required. String or funcion used for replacing the searching content.
+- `search`: Required. String or Regex expression used for searching content in files. If multiple instances need to be replaced, use a Regex expression
+- `replace`: Required. String or function used for replacing the searching content.
 
 # License
 

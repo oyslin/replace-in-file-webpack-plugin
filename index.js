@@ -24,7 +24,7 @@ function replace(file, rules) {
 	let template = fs.readFileSync(src, 'utf8');
 
 	template = rules.reduce(
-		(template, rule) => template.replace(
+		(template, rule) => template.replaceAll(
 			rule.search, (typeof rule.replace === 'string' ? rule.replace : rule.replace.bind(global))
 		),
 		template
